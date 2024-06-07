@@ -1,13 +1,24 @@
-import './Calendar.css'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { useEffect, useState } from 'react'
+import { useModal } from '../../hooks/useModal'
+import { useUser } from '../../hooks/useUserContext'
 import { months, weekdays } from '../../utils/calendar.helpers'
 import { TypeCalendarDay } from '../../utils/calendar.types'
+import './Calendar.css'
 
 export const Calendar = () => {
+	const { setIsOpen, setTasks, setSelectedDay } = useModal()
+	const [tasksU, setTasksU] = useState()
+	const { user } = useUser()
 	const [date, setDate] = useState<Date>(new Date())
 	const [calendar, setCalendar] = useState<TypeCalendarDay[]>([])
+
+	const fetchData = async () => {
+		const res = await fetch('http://localhost:3000/users')
+		const data = await res.json()
+		return data
+	}
 
 	useEffect(() => {
 		const calendarDays = generateCalendar()
@@ -45,8 +56,17 @@ export const Calendar = () => {
 			calendarDays.push({ day: i - lastDayOfMonth + 1, inactive: true })
 		}
 
-		return calendarDays;
+		return calendarDays
 	}
+
+	const handleDayClick = async (day: Date) => {
+		setSelectedDay(day)
+		fetchData()
+			.then(res => console.log(res.find(i => i.id === '1')))
+		
+		setIsOpen(true)
+	}
+
 
 	return (
 		<section className='calendar'>
@@ -74,7 +94,11 @@ export const Calendar = () => {
 			</ul>
 			<ul className='calendar__cells'>
 				{calendar.map((item, index) => (
-					<li key={index} className={`calendar__cells-cell `}>
+					<li
+						onClick={() => handleDayClick(date)}
+						key={index}
+						className={`calendar__cells-cell `}
+					>
 						<span
 							className={`calendar__cells-cell-day ${
 								item.inactive ? 'inactive' : ''

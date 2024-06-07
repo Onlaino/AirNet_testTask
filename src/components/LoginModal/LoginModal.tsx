@@ -1,10 +1,11 @@
 import './LoginModal.css'
-import { useUser } from '../../hooks/useUserContext'
-import { FormEventHandler, useEffect, useState } from 'react'
-import { ILoginModal } from './LoginModal.props'
 import CloseIcon from '@mui/icons-material/Close'
+import { useUser } from '../../hooks/useUserContext'
+import { ILoginModal } from './LoginModal.props'
+import { FormEventHandler, useEffect, useRef, useState } from 'react'
 
 export const LoginModal = ({ setIsOpen }: ILoginModal) => {
+	const inputRef = useRef<HTMLInputElement | null>(null!);
 	const { login } = useUser()
 	const [name, setName] = useState<string>('')
 
@@ -15,6 +16,7 @@ export const LoginModal = ({ setIsOpen }: ILoginModal) => {
 	}
 
 	useEffect(() => {
+		inputRef.current && inputRef.current.focus()
 		const keyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') setIsOpen(false)
 		}
@@ -37,6 +39,7 @@ export const LoginModal = ({ setIsOpen }: ILoginModal) => {
 					Type name
 				</label>
 				<input
+					ref={inputRef}
 					required
 					className='login__form-input'
 					placeholder='type name'
