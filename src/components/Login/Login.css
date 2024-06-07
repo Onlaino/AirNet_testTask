@@ -1,0 +1,50 @@
+.login {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 10px;
+}
+
+.login__wrapper {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	color: white;
+	transition: all 0.35s ease;
+}
+
+.login__wrapper:hover {
+	transform: translateY(-5px);
+	color: #ffa500;
+}
+
+.login__user {
+	color: #ffa500;
+}
+
+.login__user-name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.login__logout {
+
+}
+
+.login__logout-icon {
+	color: #fff;
+	transition: all 0.35s ease;
+}
+
+.login__logout-icon:hover {
+	cursor: pointer;
+	scale: 1.1;
+}
+
+.login__logout-icon:active {
+	scale: 0.95;
+}
