@@ -1,0 +1,53 @@
+{
+	"users": [
+		{
+			"userId": 1,
+			"name": "Oleg",
+			"tasks": [
+				{
+					"id": 1,
+					"date": "2024-06-01",
+					"title": "Задача 1",
+					"description": "Описание задачи 1",
+					"completed": false
+				},
+				{
+					"id": 2,
+					"date": "2024-06-01",
+					"title": "Задача 2",
+					"description": "Описание задачи 2",
+					"completed": true
+				}
+			]
+		},
+		{
+			"userId": 2,
+			"name": "Alex",
+			"tasks": [
+				{
+					"id": 3,
+					"date": "2024-06-02",
+					"title": "Задача 3",
+					"description": "Описание задачи 3",
+					"completed": false
+				},
+				{
+					"id": 4,
+					"date": "2024-06-03",
+					"title": "Задача 4",
+					"description": "Описание задачи 4",
+					"priority": "высокий",
+					"completed": false
+				},
+				{
+					"id": 5,
+					"date": "2024-06-03",
+					"title": "Задача 5",
+					"description": "Описание задачи 5",
+					"priority": "средний",
+					"completed": false
+				}
+			]
+		}
+	]
+}
