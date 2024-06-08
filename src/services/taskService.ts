@@ -1,3 +1,4 @@
+import { ITask } from '../interfaces/tasks.interface'
 import { IUser } from '../interfaces/user.interface'
 
 export class TaskService {
@@ -13,7 +14,7 @@ export class TaskService {
 		}
 	}
 
-	async addTaskByUserId(userId: string, newTask) {
+	async addTaskByUserId(userId: string, newTask: ITask) {
 		try {
 			const userResponse = await fetch(`${this.BASE_URL}/${userId}`)
 			const user = await userResponse.json()

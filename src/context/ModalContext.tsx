@@ -8,7 +8,6 @@ import {
 } from 'react'
 import { ITask } from '../interfaces/tasks.interface'
 import { useUser } from '../hooks/useUserContext'
-import { TaskService } from '../services/taskService'
 
 interface ModalContextType {
 	isOpen: boolean
@@ -30,8 +29,6 @@ const initialValue: ModalContextType = {
 
 export const ModalContext = createContext<ModalContextType>(initialValue)
 
-const taskService = new TaskService()
-
 export const ModalContextProvider: React.FC<PropsWithChildren> = ({
 	children,
 }) => {
@@ -41,17 +38,32 @@ export const ModalContextProvider: React.FC<PropsWithChildren> = ({
 	const [selectedDay, setSelectedDay] = useState<Date | null>(null)
 
 	useEffect(() => {
-		const fetchTaskForUser = async (id: string) => {
-			const currentUser = await fetch(`http://localhost:3000/users/${id}`)
-			const userData = await currentUser.json()
-			setTasks(userData);
-			return userData.tasks
-			// const currentTasks = await taskService.fetchTasksByUserId(user.id);
-			// console.log(currentTasks);
+		const fetchTasksForUser = async (userId: string): Promise<ITask[]> => {
+			try {
+				const response = await fetch(`http://localhost:3000/users/${userId}`)
+				const userData = await response.json()
+				return userData.tasks
+			} catch (error) {
+				console.error('Error fetching tasks for user:', error)
+				throw error
+			}
+		}
+		const fetchAndSetTasksForUser = async () => {
+			if (!user.id) {
+				console.log('no user id')
+				return
+			}
+
+			try {
+				const fetchedTasks = await fetchTasksForUser(user.id)
+				setTasks(fetchedTasks)
+			} catch (error) {
+				console.error('Ошибка при получении и установке задач:', error)
+			}
 		}
 
-		fetchTaskForUser(user.id);
-	}, [setTasks])
+		fetchAndSetTasksForUser()
+	}, [user.id])
 
 	return (
 		<ModalContext.Provider

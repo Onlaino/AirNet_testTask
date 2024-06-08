@@ -21,7 +21,8 @@ export const TasksModal: React.FC = () => {
 
 
 	useEffect(() => {
-	}, [])
+		console.log(tasks)
+	}, [tasks])
 
 	if (!isOpen) return null
 
@@ -34,8 +35,14 @@ const handleAddTask: FormEventHandler<HTMLFormElement> = async e => {
 	const newTask = { ...formTask, id: uuidv4() }
 	
 	try {
-		const addedTask = await taskService.addTaskByUserId(user.id, newTask)
-		setTasks(prev => [...prev, addedTask])
+		const userWithAddedTask = await taskService.addTaskByUserId(
+			user.id,
+			newTask
+		)
+		const taskToAdd =
+			userWithAddedTask.tasks[userWithAddedTask.tasks.length - 1]
+			
+		setTasks(prev => [...prev, taskToAdd])
 		setFormTask({
 			id: '',
 			title: '',

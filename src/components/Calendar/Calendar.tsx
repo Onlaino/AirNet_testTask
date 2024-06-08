@@ -10,7 +10,7 @@ import { TasksModal } from '../TaskModal/TaskModal'
 
 
 export const Calendar = () => {
-	const { setIsOpen, setTasks, setSelectedDay } = useModal()
+	const { setIsOpen, setSelectedDay } = useModal()
 	const { user } = useUser()
 	const [date, setDate] = useState<Date>(new Date())
 	const [calendar, setCalendar] = useState<TypeCalendarDay[]>([])
@@ -56,9 +56,7 @@ export const Calendar = () => {
 
 	const handleDayClick = async (day: Date) => {
 		setSelectedDay(day)
-
 		setIsOpen(true)
-
 	}
 
 	return (

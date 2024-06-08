@@ -3,85 +3,30 @@
     {
       "id": "1",
       "name": "Oleg",
-      "tasks": [
-        {
-          "id": 1,
-          "date": "2024-06-01",
-          "title": "Задача 1",
-          "description": "Описание задачи 1",
-          "completed": false
-        },
-        {
-          "id": 2,
-          "date": "2024-06-01",
-          "title": "Задача 2",
-          "description": "Описание задачи 2",
-          "completed": true
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "name": "Alex",
-      "tasks": [
-        {
-          "id": 3,
-          "date": "2024-06-02",
-          "title": "Задача 3",
-          "description": "Описание задачи 3",
-          "completed": false
-        },
-        {
-          "id": 4,
-          "date": "2024-06-03",
-          "title": "Задача 4",
-          "description": "Описание задачи 4",
-          "priority": "высокий",
-          "completed": false
-        },
-        {
-          "id": 5,
-          "date": "2024-06-03",
-          "title": "Задача 5",
-          "description": "Описание задачи 5",
-          "priority": "средний",
-          "completed": false
-        }
-      ]
-    },
-    {
-      "id": "50aa2ce2-1710-464b-a8fe-229e1ef3530e",
-      "name": "Vasya",
-      "tasks": [
-        {
-          "id": "c053afac-15f1-477a-83cc-d23bb2341e29",
-          "title": "Head",
-          "description": "Do smth",
-          "date": "6/8/2024, 4:14:24 PM",
-          "completed": false
-        },
-        {
-          "id": "2370177d-e963-49d9-a008-b6f29a1b1ee9",
-          "title": "asdfasdf",
-          "description": "asd",
-          "date": "6/8/2024, 4:15:08 PM",
-          "completed": false
-        }
-      ]
+      "tasks": []
     },
     {
       "id": "3a188f82-3b9a-4aff-b0b5-012143075411",
       "name": "V",
+      "tasks": []
+    },
+    {
+      "id": "25be89ee-0c5e-4903-8f8a-1c6ab6870b73",
+      "name": "A",
       "tasks": [
         {
-          "id": "43c64abe-c7f9-4b73-a09d-447de3301b1e",
-          "title": "df",
-          "description": "df",
-          "date": "6/8/2024, 4:35:45 PM",
+          "id": "d4a3b20e-778c-42f9-8cdc-ae67eb7171b6",
+          "title": "Title for day 8",
+          "description": "descr for day",
+          "date": "6/8/2024, 6:35:02 PM",
           "completed": false
         }
-       
       ]
+    },
+    {
+      "id": "a5b6b4ee-63d7-4037-a2d7-c52614410a23",
+      "name": "Ф",
+      "tasks": []
     }
   ]
 }
