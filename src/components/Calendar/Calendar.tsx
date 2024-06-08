@@ -5,7 +5,10 @@ import { useModal } from '../../hooks/useModal'
 import { useUser } from '../../hooks/useUserContext'
 import { months, weekdays } from '../../utils/calendar.helpers'
 import { TypeCalendarDay } from '../../utils/calendar.types'
+import { TaskService } from '../../services/taskService'
 import './Calendar.css'
+
+const service = new TaskService()
 
 export const Calendar = () => {
 	const { setIsOpen, setTasks, setSelectedDay } = useModal()
@@ -13,12 +16,6 @@ export const Calendar = () => {
 	const { user } = useUser()
 	const [date, setDate] = useState<Date>(new Date())
 	const [calendar, setCalendar] = useState<TypeCalendarDay[]>([])
-
-	const fetchData = async () => {
-		const res = await fetch('http://localhost:3000/users')
-		const data = await res.json()
-		return data
-	}
 
 	useEffect(() => {
 		const calendarDays = generateCalendar()
@@ -61,12 +58,10 @@ export const Calendar = () => {
 
 	const handleDayClick = async (day: Date) => {
 		setSelectedDay(day)
-		fetchData()
-			.then(res => console.log(res.find(i => i.id === '1')))
-		
+		const user = await service.fetchTasksByUserId('1')
+		setTasksU(user?.tasks)
 		setIsOpen(true)
 	}
-
 
 	return (
 		<section className='calendar'>

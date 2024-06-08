@@ -3,6 +3,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { useUser } from '../../hooks/useUserContext'
 import { ILoginModal } from './LoginModal.props'
 import { FormEventHandler, useEffect, useRef, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 export const LoginModal = ({ setIsOpen }: ILoginModal) => {
 	const inputRef = useRef<HTMLInputElement | null>(null!);
@@ -11,7 +12,7 @@ export const LoginModal = ({ setIsOpen }: ILoginModal) => {
 
 	const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
 		e.preventDefault()
-		login(name)
+		login(name, uuidv4())
 		setIsOpen(false)
 	}
 

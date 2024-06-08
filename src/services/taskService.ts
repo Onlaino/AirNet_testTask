@@ -1,22 +1,15 @@
-import { ITasks } from '../interfaces/tasks.interface'
+import { IUser } from '../interfaces/user.interface'
 
-export const fetchTasks = async (): Promise<ITasks> => {
-	try {
-		const res = await fetch('https://localhost:3000/tasks')
-		const data = await res.json()
-		return data
-	} catch (error) {
-		return Promise.reject(error)
-	}
-}
+export class TaskService {
+	private readonly	BASE_URL = 'http://localhost:3000/users'
 
-export const fetchTasksForUserAndDate = async (userId: number) => {
-	try {
-		const res = await fetch(`https://localhost:3000/tasks/${userId}`)
-		const data = await res.json()
-		console.log(data)
-		return data
-	} catch (error) {
-		return Promise.reject()
+	async fetchTasksByUserId(id: string): Promise<IUser> {
+		try {
+			const res = await fetch(`${this.BASE_URL}/${id}`)
+			const data = res.json()
+			return data
+		} catch (error) {
+			return Promise.reject()
+		}
 	}
 }
