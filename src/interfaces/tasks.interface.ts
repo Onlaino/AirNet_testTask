@@ -3,7 +3,7 @@ export interface ITasks {
 }
 
 export interface ITask {
-	id: number
+	id: string
 	date: string
 	title: string
 	description: string

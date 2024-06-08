@@ -52,7 +52,36 @@
     {
       "id": "50aa2ce2-1710-464b-a8fe-229e1ef3530e",
       "name": "Vasya",
-      "tasks": []
+      "tasks": [
+        {
+          "id": "c053afac-15f1-477a-83cc-d23bb2341e29",
+          "title": "Head",
+          "description": "Do smth",
+          "date": "6/8/2024, 4:14:24 PM",
+          "completed": false
+        },
+        {
+          "id": "2370177d-e963-49d9-a008-b6f29a1b1ee9",
+          "title": "asdfasdf",
+          "description": "asd",
+          "date": "6/8/2024, 4:15:08 PM",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "3a188f82-3b9a-4aff-b0b5-012143075411",
+      "name": "V",
+      "tasks": [
+        {
+          "id": "43c64abe-c7f9-4b73-a09d-447de3301b1e",
+          "title": "df",
+          "description": "df",
+          "date": "6/8/2024, 4:35:45 PM",
+          "completed": false
+        }
+       
+      ]
     }
   ]
 }

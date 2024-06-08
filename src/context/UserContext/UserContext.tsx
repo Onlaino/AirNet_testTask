@@ -18,13 +18,13 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
 		try {
 			const users: IUser[] = await userService.getAllUsers()
 			const existingUser = users.find(user => user.name === name)
-
 			if (existingUser) {
 				setUser({
 					name: existingUser.name,
 					id: existingUser.id,
 					tasks: existingUser.tasks,
 				})
+				
 			} else {
 				const newUser = await userService.createUser({
 					name,
@@ -45,6 +45,7 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
 			console.error('Login failed:', error)
 		}
 	}
+
 
 	const logout = () => {
 		setUser({

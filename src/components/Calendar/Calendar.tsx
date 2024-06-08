@@ -5,14 +5,12 @@ import { useModal } from '../../hooks/useModal'
 import { useUser } from '../../hooks/useUserContext'
 import { months, weekdays } from '../../utils/calendar.helpers'
 import { TypeCalendarDay } from '../../utils/calendar.types'
-import { TaskService } from '../../services/taskService'
 import './Calendar.css'
+import { TasksModal } from '../TaskModal/TaskModal'
 
-const service = new TaskService()
 
 export const Calendar = () => {
 	const { setIsOpen, setTasks, setSelectedDay } = useModal()
-	const [tasksU, setTasksU] = useState()
 	const { user } = useUser()
 	const [date, setDate] = useState<Date>(new Date())
 	const [calendar, setCalendar] = useState<TypeCalendarDay[]>([])
@@ -58,13 +56,14 @@ export const Calendar = () => {
 
 	const handleDayClick = async (day: Date) => {
 		setSelectedDay(day)
-		const user = await service.fetchTasksByUserId('1')
-		setTasksU(user?.tasks)
+
 		setIsOpen(true)
+
 	}
 
 	return (
 		<section className='calendar'>
+			<TasksModal/>
 			<header className='calendar__heading'>
 				<button
 					className='calendar__heading-button'

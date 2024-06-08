@@ -4,10 +4,12 @@ import {
 	PropsWithChildren,
 	Dispatch,
 	SetStateAction,
+	useEffect,
 } from 'react'
 import { ITask } from '../interfaces/tasks.interface'
+import { useUser } from '../hooks/useUserContext'
+import { TaskService } from '../services/taskService'
 
-// Define the type for the context state including isOpen, tasks, and a method to set tasks
 interface ModalContextType {
 	isOpen: boolean
 	setIsOpen: Dispatch<SetStateAction<boolean>>
@@ -17,23 +19,39 @@ interface ModalContextType {
 	setSelectedDay: Dispatch<SetStateAction<Date | null>>
 }
 
-const defaultContextValue: ModalContextType = {
+const initialValue: ModalContextType = {
 	isOpen: false,
 	setIsOpen: () => {},
-	tasks: [], // Initialize with an empty array or fetch tasks as needed
+	tasks: [],
 	setTasks: () => {},
 	selectedDay: null,
 	setSelectedDay: () => {},
 }
 
-export const ModalContext = createContext<ModalContextType>(defaultContextValue)
+export const ModalContext = createContext<ModalContextType>(initialValue)
+
+const taskService = new TaskService()
 
 export const ModalContextProvider: React.FC<PropsWithChildren> = ({
 	children,
 }) => {
+	const { user } = useUser()
 	const [isOpen, setIsOpen] = useState<boolean>(false)
-	const [tasks, setTasks] = useState<ITask[]>([]) 
+	const [tasks, setTasks] = useState<ITask[]>([])
 	const [selectedDay, setSelectedDay] = useState<Date | null>(null)
+
+	useEffect(() => {
+		const fetchTaskForUser = async (id: string) => {
+			const currentUser = await fetch(`http://localhost:3000/users/${id}`)
+			const userData = await currentUser.json()
+			setTasks(userData);
+			return userData.tasks
+			// const currentTasks = await taskService.fetchTasksByUserId(user.id);
+			// console.log(currentTasks);
+		}
+
+		fetchTaskForUser(user.id);
+	}, [setTasks])
 
 	return (
 		<ModalContext.Provider

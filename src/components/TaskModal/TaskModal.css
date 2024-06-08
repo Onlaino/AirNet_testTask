@@ -1,0 +1,69 @@
+.modal__wrapper {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+	height: 50%;
+	width: 50%;
+	background-color: #b9b8b8;
+	border: 1px solid orange;
+	border-radius: 20px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.modal__heading {
+	font-size: 25px;
+	background-image: url('https://images.ctfassets.net/lzny33ho1g45/O6Ns6DttUzJym7rhGiD36/b1cc4e063288e5161b14edad3569c5cb/best-to-do-list-apps.jpg');
+	background-clip: text;
+	color: transparent;
+}
+
+.modal__content {
+}
+.modal__content-item {
+}
+
+.modal__footer button {
+	cursor: pointer;
+	padding: 10px 20px;
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	background-color: orange;
+	transition: all 0.35s ease;
+}
+
+.modal__footer button:hover {
+	transform: translateX(-3px);
+}
+
+.modal__footer button:active {
+	transform: translateX(3px);
+}
+
+
+.modal__form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.modal__form-textarea {
+	resize: none;
+}

@@ -7,12 +7,12 @@ import { Login } from '../Login/Login'
 export const App = () => {
 	return (
 		<main className='main'>
-			<ModalContextProvider>
-				<UserContextProvider>
+			<UserContextProvider>
+				<ModalContextProvider>
 					<Login />
 					<Calendar />
-				</UserContextProvider>
-			</ModalContextProvider>
+				</ModalContextProvider>
+			</UserContextProvider>
 		</main>
 	)
 }
