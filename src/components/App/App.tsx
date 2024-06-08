@@ -1,4 +1,4 @@
-import { ModalContextProvider } from '../../context/ModalContext'
+import { ModalContextProvider } from '../../context/ModalContext/ModalContext'
 import { UserContextProvider } from '../../context/UserContext/UserContext'
 import '../../styles/global.css'
 import { Calendar } from '../Calendar/Calendar'

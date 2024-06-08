@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const taskService = new TaskService()
 
-export const TasksModal: React.FC = () => {
+export const TasksModal = () => {
 	const [formTask, setFormTask] = useState<ITask>({
 		id: '',
 		title: '',
@@ -17,45 +17,42 @@ export const TasksModal: React.FC = () => {
 		completed: false,
 	})
 	const { isOpen, setIsOpen, setTasks, tasks } = useModal()
+	// tasks
 	const { user } = useUser()
 
 
-	useEffect(() => {
-		console.log(tasks)
-	}, [tasks])
+	useEffect(() => {}, [tasks])
 
 	if (!isOpen) return null
 
-const handleAddTask: FormEventHandler<HTMLFormElement> = async e => {
-	e.preventDefault()
-	if (!user.id) {
-		alert('Войдите в систему для добавления задач!')
-		return
-	}
-	const newTask = { ...formTask, id: uuidv4() }
-	
-	try {
-		const userWithAddedTask = await taskService.addTaskByUserId(
-			user.id,
-			newTask
-		)
-		const taskToAdd =
-			userWithAddedTask.tasks[userWithAddedTask.tasks.length - 1]
-			
-		setTasks(prev => [...prev, taskToAdd])
-		setFormTask({
-			id: '',
-			title: '',
-			description: '',
-			date: new Date().toLocaleString(),
-			completed: false,
-		})
+	const handleAddTask: FormEventHandler<HTMLFormElement> = async e => {
+		e.preventDefault()
+		if (!user.id) {
+			alert('Войдите в систему для добавления задач!')
+			return
+		}
+		const newTask = { ...formTask, id: uuidv4() }
 
-	} catch (error) {
-		console.error('Failed to add task:', error)
-	}
-}
+		try {
+			const userWithAddedTask = await taskService.addTaskByUserId(
+				user.id,
+				newTask
+			)
+			const taskToAdd =
+				userWithAddedTask.tasks[userWithAddedTask.tasks.length - 1]
 
+			setTasks(prev => [...prev, taskToAdd])
+			setFormTask({
+				id: '',
+				title: '',
+				description: '',
+				date: new Date().toLocaleString(),
+				completed: false,
+			})
+		} catch (error) {
+			console.error('Failed to add task:', error)
+		}
+	}
 
 	return (
 		<section className='modal__wrapper'>

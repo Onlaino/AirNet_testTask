@@ -6,8 +6,8 @@ import {
 	SetStateAction,
 	useEffect,
 } from 'react'
-import { ITask } from '../interfaces/tasks.interface'
-import { useUser } from '../hooks/useUserContext'
+import { ITask } from '../../interfaces/tasks.interface'
+import { useUser } from '../../hooks/useUserContext'
 
 interface ModalContextType {
 	isOpen: boolean
@@ -50,7 +50,6 @@ export const ModalContextProvider: React.FC<PropsWithChildren> = ({
 		}
 		const fetchAndSetTasksForUser = async () => {
 			if (!user.id) {
-				console.log('no user id')
 				return
 			}
 

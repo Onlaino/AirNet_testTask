@@ -1,13 +1,15 @@
+import './Calendar.css'
+import { months } from '../../utils/calendar.helpers'
+import { useModal } from '../../hooks/useModal'
+import { WeekDays } from '../WeekDays/WeekDays'
+import { TasksModal } from '../TaskModal/TaskModal'
+import { TypeCalendarDay } from '../../utils/calendar.types'
+import { useEffect, useState } from 'react'
+
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { useEffect, useState } from 'react'
-import { useModal } from '../../hooks/useModal'
 import { useUser } from '../../hooks/useUserContext'
-import { months, weekdays } from '../../utils/calendar.helpers'
-import { TypeCalendarDay } from '../../utils/calendar.types'
-import './Calendar.css'
-import { TasksModal } from '../TaskModal/TaskModal'
-
+import { ITask } from '../../interfaces/tasks.interface'
 
 export const Calendar = () => {
 	const { setIsOpen, setSelectedDay } = useModal()
@@ -33,35 +35,54 @@ export const Calendar = () => {
 
 		for (let i = firstDayOfMonth; i > 0; i--) {
 			calendarDays.push({
-				day: lastDateOfPreviousMonth - i + 1,
+				day: new Date(year, month - 1, lastDateOfPreviousMonth - i + 1),
 				inactive: true,
+				tasks: user.tasks,
 			})
 		}
 
+		// Дни текущего месяца
 		for (let i = 1; i <= lastDateOfMonth; i++) {
 			const isToday =
 				i === date.getDate() &&
 				month === new Date().getMonth() &&
 				year === new Date().getFullYear()
-			calendarDays.push({ day: i, active: isToday })
+			calendarDays.push({
+				day: new Date(year, month, i),
+				active: isToday,
+				tasks: user.tasks,
+			})
 		}
 
-		const lastDayIndex = (lastDayOfMonth === 0 ? 7 : lastDayOfMonth) - 1
-		for (let i = lastDayOfMonth; i <= 6 - lastDayIndex; i++) {
-			calendarDays.push({ day: i - lastDayOfMonth + 1, inactive: true })
+		// Дни следующего месяца
+		const daysToAdd = 6 - (lastDayOfMonth === 0 ? 6 : lastDayOfMonth)
+		for (let i = 1; i <= daysToAdd; i++) {
+			calendarDays.push({
+				day: new Date(year, month + 1, i),
+				inactive: true,
+				tasks: user.tasks,
+			})
 		}
 
 		return calendarDays
 	}
 
-	const handleDayClick = async (day: Date) => {
-		setSelectedDay(day)
+	// calendar Date Mon May 27 2024 00:00:00 GMT+0300 (Moscow Standard Time)
+	// user.tasks 6/8/2024, 10:59:45 PM
+
+	const handleDayClick = async (calendarDay: TypeCalendarDay) => {
+		const nowSelectedDay = new Date(
+			date.getFullYear(),
+			date.getMonth(),
+			calendarDay.day
+		)
+		setSelectedDay(nowSelectedDay)
 		setIsOpen(true)
 	}
 
 	return (
 		<section className='calendar'>
-			<TasksModal/>
+			<TasksModal />
 			<header className='calendar__heading'>
 				<button
 					className='calendar__heading-button'
@@ -77,27 +98,30 @@ export const Calendar = () => {
 				</button>
 				{months[date.getMonth()]} {date.getFullYear()}
 			</header>
-			<ul className='calendar__weekdays'>
-				{weekdays.map((wd, i) => (
-					<li key={i} className='calendar__weekdays-day'>
-						{wd}
-					</li>
-				))}
-			</ul>
+			<WeekDays />
 			<ul className='calendar__cells'>
 				{calendar.map((item, index) => (
 					<li
-						onClick={() => handleDayClick(date)}
+						onClick={() => handleDayClick(item)}
 						key={index}
-						className={`calendar__cells-cell `}
+						className={`calendar__cells-cell ${
+							item.inactive ? 'inactive' : ''
+						} ${item.active ? 'active' : ''}`}
 					>
-						<span
-							className={`calendar__cells-cell-day ${
-								item.inactive ? 'inactive' : ''
-							} ${item.active ? 'active' : ''}`}
-						>
-							{item.day}
+						<span className='calendar__cells-cell-day'>
+							{item.day.toLocaleString().split(',')[0].split('/')[1]}
 						</span>
+						<div className='calendar__cells-cell-tasks'>
+							{user.tasks
+								.filter(
+									task =>
+										task.date.toLocaleString().split(',')[0].split('/')[1] ===
+										item.day.toLocaleString().split(',')[0].split('/')[1]
+								)
+								.map(task => (
+									<div key={task.id}>{task.title}</div>
+								))}
+						</div>
 					</li>
 				))}
 			</ul>
