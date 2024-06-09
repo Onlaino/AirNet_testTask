@@ -1,18 +1,17 @@
 import './Calendar.css'
+import { Day } from '../Day/Day'
 import { months } from '../../utils/calendar.helpers'
+import { useUser } from '../../hooks/useUserContext'
 import { useModal } from '../../hooks/useModal'
 import { WeekDays } from '../WeekDays/WeekDays'
 import { TasksModal } from '../TaskModal/TaskModal'
 import { TypeCalendarDay } from '../../utils/calendar.types'
 import { useEffect, useState } from 'react'
-
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { useUser } from '../../hooks/useUserContext'
-import { ITask } from '../../interfaces/tasks.interface'
 
 export const Calendar = () => {
-	const { setIsOpen, setSelectedDay } = useModal()
+	const { setIsOpen, setSelectedDay, tasks } = useModal()
 	const { user } = useUser()
 	const [date, setDate] = useState<Date>(new Date())
 	const [calendar, setCalendar] = useState<TypeCalendarDay[]>([])
@@ -67,16 +66,8 @@ export const Calendar = () => {
 		return calendarDays
 	}
 
-	// calendar Date Mon May 27 2024 00:00:00 GMT+0300 (Moscow Standard Time)
-	// user.tasks 6/8/2024, 10:59:45 PM
-
 	const handleDayClick = async (calendarDay: TypeCalendarDay) => {
-		const nowSelectedDay = new Date(
-			date.getFullYear(),
-			date.getMonth(),
-			calendarDay.day
-		)
-		setSelectedDay(nowSelectedDay)
+		setSelectedDay(calendarDay.day)
 		setIsOpen(true)
 	}
 
@@ -112,15 +103,7 @@ export const Calendar = () => {
 							{item.day.toLocaleString().split(',')[0].split('/')[1]}
 						</span>
 						<div className='calendar__cells-cell-tasks'>
-							{user.tasks
-								.filter(
-									task =>
-										task.date.toLocaleString().split(',')[0].split('/')[1] ===
-										item.day.toLocaleString().split(',')[0].split('/')[1]
-								)
-								.map(task => (
-									<div key={task.id}>{task.title}</div>
-								))}
+							<Day tasks={tasks} date={item.day} />
 						</div>
 					</li>
 				))}
