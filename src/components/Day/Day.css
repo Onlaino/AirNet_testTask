@@ -1,0 +1,11 @@
+.calendar__cells-cell-tasks {
+	width: 100%;
+}
+
+.calendar__cells-cell-tasks-item {
+	width: 100%;
+	border: 1px solid orange;
+	border-radius: 5px;
+	padding: 3px 7px;
+	margin-bottom: 4px;
+}

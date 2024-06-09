@@ -18,7 +18,7 @@ export const Calendar = () => {
 
 	useEffect(() => {
 		const calendarDays = generateCalendar()
-		setCalendar(calendarDays)
+			setCalendar(calendarDays)
 	}, [date])
 
 	const generateCalendar = () => {

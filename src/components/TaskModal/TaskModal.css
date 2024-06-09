@@ -13,13 +13,14 @@
 }
 
 .modal {
+	overflow: hidden;
 	height: 50%;
 	width: 50%;
+	padding: 20px;
 	background-color: #b9b8b8;
 	border: 1px solid orange;
 	border-radius: 20px;
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
 	flex-direction: column;
 	gap: 20px;
@@ -27,14 +28,12 @@
 
 .modal__heading {
 	font-size: 25px;
-	background-image: url('https://images.ctfassets.net/lzny33ho1g45/O6Ns6DttUzJym7rhGiD36/b1cc4e063288e5161b14edad3569c5cb/best-to-do-list-apps.jpg');
 	background-clip: text;
-	color: transparent;
+	color: black;
 }
 
-.modal__content {
-}
-.modal__content-item {
+.modal__footer {
+	margin-top: 15px;
 }
 
 .modal__footer button {
@@ -55,15 +54,117 @@
 	transform: translateX(3px);
 }
 
-
 .modal__form {
+	border: 1px solid orange;
+	border-radius: 20px;
+	background-color: #fff;
+	padding: 30px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	gap: 10px;
+	gap: 20px;
+}
+
+.modal__form-title {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.modal__form-title label {
+	text-shadow: 1px 1px 2px rgb(255, 115, 0);
+}
+
+.modal__form-input {
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	padding: 5px 10px;
+	font-size: 15px;
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .modal__form-textarea {
 	resize: none;
+	height: 70px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	padding: 5px 10px;
+	font-size: 15px;
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.modal__form-button {
+	cursor: pointer;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 20px;
+	background-color: rgb(255, 128, 0);
+	outline: none;
+	animation: buttonAnimate;
+	animation: buttonAnimate 2s infinite alternate;
+}
+
+.modal__wrapper-content {
+	padding: 0 20px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.modal__content {
+	height: 85%;
+	width: 50%;
+	overflow: scroll;
+}
+
+
+.modal__form-content-form {
+	text-align: center;
+}
+
+.modal__content-item {
+	padding: 10px 20px;
+	border: 1px solid orange;
+	border-radius: 20px;
+	margin-bottom: 10px;
+	background-color: #fff;
+	word-wrap: break-word;
+}
+
+.modal__content-item p {
+	color: gray;
+}
+
+.modal__content-item-title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 5px;
+}
+
+.modal__content-item-title:after {
+	position: absolute;
+	content: '';
+	background-color: gray;
+	bottom: -2px;
+	right: 0;
+	left: 0;
+	height: 1px;
+}
+
+@keyframes buttonAnimate {
+0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

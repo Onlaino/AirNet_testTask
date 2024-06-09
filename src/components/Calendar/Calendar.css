@@ -53,16 +53,17 @@
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	grid-template-rows: repeat(5, 120px);
-	grid-auto-rows: 120px;
+  grid-auto-rows: 120px;
 }
 
 .calendar__cells-cell {
+	padding: 10px 10px;
 	user-select: none;
 	border-radius: 20px;
 	display: flex;
 	overflow: scroll;
 	flex-direction: column;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
 	transition: all .35s ease-out;
 }
