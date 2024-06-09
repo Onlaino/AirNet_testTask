@@ -34,7 +34,7 @@ export const TasksModal = () => {
 
 	useEffect(() => {
 		filterTasks && setFilteredTasks(filterTasks)
-	}, [tasks, selectedDay, setTasks])
+	}, [tasks, selectedDay])
 
 	if (!isOpen) return null
 

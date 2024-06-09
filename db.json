@@ -10,6 +10,13 @@
           "description": "descr",
           "date": "2024-05-26T21:00:00.000Z",
           "completed": true
+        },
+        {
+          "id": "b9f77c31-9ec4-446c-b85e-af7fbd1325f4",
+          "title": "asdf",
+          "description": "asdf",
+          "date": "2024-06-30T21:00:00.000Z",
+          "completed": false
         }
       ]
     },
@@ -17,6 +24,19 @@
       "id": "97ebd87e-abe4-4844-92ce-8b05a920898f",
       "name": "ф",
       "tasks": []
+    },
+    {
+      "id": "50aa3a3b-f265-4139-9d6b-539e2295ce18",
+      "name": "A",
+      "tasks": [
+        {
+          "id": "3de08f44-2abe-4008-be43-80d9fabf99f3",
+          "title": "aaaa",
+          "description": "a",
+          "date": "2024-05-26T21:00:00.000Z",
+          "completed": true
+        }
+      ]
     }
   ]
 }
