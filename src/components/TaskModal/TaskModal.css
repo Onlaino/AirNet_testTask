@@ -139,24 +139,6 @@
 	color: gray;
 }
 
-.modal__content-item-title {
-	position: relative;
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	margin-bottom: 5px;
-}
-
-.modal__content-item-title:after {
-	position: absolute;
-	content: '';
-	background-color: gray;
-	bottom: -2px;
-	right: 0;
-	left: 0;
-	height: 1px;
-}
-
 @keyframes buttonAnimate {
 0% {
     transform: scale(1);

@@ -11,8 +11,9 @@ import { TaskModalItem } from '../TaskModalItems/TaskModalItems'
 const taskService = new TaskService()
 
 export const TasksModal = () => {
-	const { selectedDay } = useModal()
+	const { user } = useUser()
 	const [filteredTasks, setFilteredTasks] = useState<ITask[]>([])
+	const { isOpen, setIsOpen, setTasks, tasks, selectedDay } = useModal()
 	const [formTask, setFormTask] = useState<ITask>({
 		id: '',
 		title: '',
@@ -20,8 +21,6 @@ export const TasksModal = () => {
 		date: '',
 		completed: false,
 	})
-	const { isOpen, setIsOpen, setTasks, tasks } = useModal()
-	const { user } = useUser()
 
 	const generateTasksForDay = () => {
 		if (selectedDay) {
@@ -68,13 +67,27 @@ export const TasksModal = () => {
 		}
 	}
 
-	const handleCheckboxChange = (id: string, completed: boolean) => {
-		setFilteredTasks(tasks =>
-			tasks.map(task =>
-				task.id === id ? { ...task, completed: !completed } : task
+	const handleDeleteTask = async (userId: string, taskId: string) => {
+		try {
+			await taskService.deleteTaskByUserId(userId, taskId)
+			const updatedTasks = tasks.filter(task => task.id !== taskId)
+			setTasks(updatedTasks)
+		} catch (e) {
+			console.error('Не удалось удалить задачу:', e)
+		}
+	}
+
+	const handleCheckboxChange = async (id: string, completed: boolean) => {
+		try {
+			await taskService.changeCheckBox(user.id, id)
+			setFilteredTasks(tasks =>
+				tasks.map(task =>
+					task.id === id ? { ...task, completed: !completed } : task
+				)
 			)
-		)
-		// Здесь также может понадобиться вызвать функцию для обновления задачи в базе данных или в общем состоянии приложения.
+		} catch(e) {
+			console.error('Не удалось поменять статус задачи', e);
+		}
 	}
 
 	return (
@@ -84,6 +97,7 @@ export const TasksModal = () => {
 				<div className='modal__wrapper-content'>
 					<div className='modal__form-content-form'>
 						<TaskModalForm
+							deleteTask={handleDeleteTask}
 							addTask={handleAddTask}
 							formTask={formTask}
 							setFormTask={setFormTask}
@@ -101,6 +115,7 @@ export const TasksModal = () => {
 									changeCheckbox={() =>
 										handleCheckboxChange(ft.id, ft.completed)
 									}
+									deleteTask={() => handleDeleteTask(user.id, ft.id)}
 								/>
 							))
 						) : (

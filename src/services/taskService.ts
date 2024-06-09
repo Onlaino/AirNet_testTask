@@ -37,20 +37,56 @@ export class TaskService {
 		}
 	}
 
-	// async addTaskByUserId(userId: string, task) {
-	// 	try {
-	// 		const res = await fetch(`${this.BASE_URL}/${userId}`, {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Content-Type': 'application/json',
-	// 			},
-	// 			body: JSON.stringify({ task }),
-	// 		})
-	// 		const data = await res.json()
-	// 		return data
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 		return Promise.reject()
-	// 	}
-	// }
+	async deleteTaskByUserId(userId: string, taskId: string): Promise<void> {
+		try {
+			const userResponse = await fetch(`${this.BASE_URL}/${userId}`)
+			const user = await userResponse.json()
+
+			const updatedTasks = user.tasks.filter((task: ITask) => task.id !== taskId)
+
+			const updateUserResponse = await fetch(`${this.BASE_URL}/${userId}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ tasks: updatedTasks }),
+			})
+
+			if (!updateUserResponse.ok) {
+				throw new Error(`Не удалось обновить пользователя с ID: ${userId}`)
+			}
+		} catch (error) {
+			console.error('Не удалось удалить задачу:', error)
+			throw error
+		}
+	}
+
+	async changeCheckBox(userId: string, taskId: string) {
+		try {
+			const userResponse = await fetch(`${this.BASE_URL}/${userId}`)
+			const user = await userResponse.json()
+
+			const updatedTasks = user.tasks.map((task: ITask) => {
+				if (task.id === taskId) {
+					return { ...task, completed: !task.completed }
+				}
+				return task
+			})
+
+			const updateUserResponse = await fetch(`${this.BASE_URL}/${userId}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ tasks: updatedTasks }),
+			})
+
+			if (!updateUserResponse.ok) {
+				throw new Error(`Не удалось обновить пользователя с ID: ${userId}`)
+			}
+		} catch (error) {
+			console.error('Не удалось удалить задачу:', error)
+			throw error
+		}
+	}
 }

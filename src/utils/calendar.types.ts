@@ -1,7 +1,7 @@
 import { ITask } from '../interfaces/tasks.interface'
 
 export type TypeCalendarDay = {
-	day: number
+	day: Date
 	inactive?: boolean
 	active?: boolean
 	tasks?: ITask[]

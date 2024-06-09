@@ -1,0 +1,39 @@
+.completed {
+	text-decoration: line-through;
+}
+
+.modal__content-item-title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin-bottom: 5px;
+}
+
+.modal__content-item-title:after {
+	position: absolute;
+	content: '';
+	background-color: gray;
+	bottom: -2px;
+	right: 0;
+	left: 0;
+	height: 1px;
+}
+
+
+.modal__content-item-delete {
+	cursor: pointer;
+
+}
+
+.modal__content-item-delete:hover {
+	scale: 1.05;
+}
+
+.modal__content-item-icons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}

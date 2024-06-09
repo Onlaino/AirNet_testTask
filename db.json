@@ -5,167 +5,18 @@
       "name": "a",
       "tasks": [
         {
-          "id": "a690d2a7-5547-4031-9eeb-0be5822d0615",
-          "title": "27",
-          "description": "",
+          "id": "2b071671-7951-42da-9389-366f07c7e806",
+          "title": "title",
+          "description": "descr",
           "date": "2024-05-26T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "0d16e895-572a-4db3-80ba-cb61d9e3d392",
-          "title": "4",
-          "description": "",
-          "date": "2024-06-03T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "ed9fecfc-66a8-44c0-95cf-0ac62e861825",
-          "title": "16",
-          "description": "",
-          "date": "2024-06-15T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "a2ee3f77-14cd-45d5-a4f9-5898900ebf94",
-          "title": "16 new",
-          "description": "",
-          "date": "2024-06-15T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "8685c816-566f-4ec4-b485-68cdd026d46d",
-          "title": "16 new new ",
-          "description": "",
-          "date": "2024-06-15T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "2c93d57e-84c0-4bbd-a736-c6efc01cf10b",
-          "title": "27new",
-          "description": "",
-          "date": "2024-05-26T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "572e3276-350e-4005-9f05-2d0055074ebf",
-          "title": "27newnew",
-          "description": "",
-          "date": "2024-05-26T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "b16e3b6a-4d5b-4197-b0c3-3bfdb61ed39b",
-          "title": "29",
-          "description": "",
-          "date": "2024-05-28T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "3f372c41-f9e1-4378-b7b0-0f704d29d244",
-          "title": "28",
-          "description": "",
-          "date": "2024-05-27T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "bedc9742-8a91-4543-a0c4-3adddf8aabb0",
-          "title": "29new",
-          "description": "",
-          "date": "2024-05-28T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "645757e3-dc57-452c-b10f-0b9cca6591ec",
-          "title": "31",
-          "description": "",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "c8b9bd47-308a-4e04-b18a-db142d396b73",
-          "title": "31new",
-          "description": "",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "78c7d0af-6442-448c-9579-208040387b43",
-          "title": "3",
-          "description": "",
-          "date": "2024-06-02T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "43ecda94-b0ce-46c9-81fb-8afd76ff349b",
-          "title": "29",
-          "description": "29descr\n",
-          "date": "2024-05-29T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "e7a9e46e-83e9-4484-8a2d-ee2b66e80aaf",
-          "title": "31newnew",
-          "description": "31newnew31newnew31newnew31newnew31newnew31newnew",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "14c92850-0c22-489c-8ccc-b781adb102ac",
-          "title": "",
-          "description": "",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "79a78ddd-7ab4-4efb-9ad2-0f68e1ea230f",
-          "title": "",
-          "description": "",
-          "date": "2024-05-28T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "86a84b72-8696-49f0-8261-05b45903f590",
-          "title": "123",
-          "description": "123",
-          "date": "2024-06-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "38ba227a-6f77-4bb4-8c47-3565961943e8",
-          "title": "Сделать дело",
-          "description": "Гулять смело",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "4771bc85-a2e3-45b8-adf3-e3a94125ab32",
-          "title": "asdf",
-          "description": "asdfasdf",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "90675227-f8e4-485b-a0e2-8a88cac6e015",
-          "title": "asdfasdf",
-          "description": "asdfasdf",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "3085fac4-72d8-4afc-8aaf-1668831a72e5",
-          "title": "asdfasdf",
-          "description": "asdfasdf",
-          "date": "2024-05-30T21:00:00.000Z",
-          "completed": false
-        },
-        {
-          "id": "17dfc79b-8ab4-4da5-bb22-7385c1ebdf45",
-          "title": "16 new new new ",
-          "description": "123;lakj;flasdkjf",
-          "date": "2024-06-15T21:00:00.000Z",
-          "completed": false
+          "completed": true
         }
       ]
+    },
+    {
+      "id": "97ebd87e-abe4-4844-92ce-8b05a920898f",
+      "name": "ф",
+      "tasks": []
     }
   ]
 }

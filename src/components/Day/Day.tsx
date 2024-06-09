@@ -20,7 +20,14 @@ export const Day = ({ date, tasks }: IDayProps) => {
 	return (
 		<div className='calendar__cells-cell-tasks'>
 			{dayTasks.map(t => (
-				<div className='calendar__cells-cell-tasks-item' key={t.id}>
+				<div
+					className={
+						t.completed
+							? 'calendar__cells-cell-tasks-item completed'
+							: 'calendar__cells-cell-tasks-item'
+					}
+					key={t.id}
+				>
 					{t.title}
 				</div>
 			))}
