@@ -3,12 +3,12 @@
 }
 
 .modal__content-item-title {
-	position: relative;
-	display: flex;
+  position: relative;
+	display: grid;
+	grid-template-columns: 170px 20px;
 	align-items: center;
-	justify-content: space-between;
 	gap: 10px;
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .modal__content-item-title:after {

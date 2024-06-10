@@ -1,3 +1,4 @@
+import './CalendarCells.css';
 import { Day } from '../Day/Day'
 import { useUser } from '../../hooks/useUserContext'
 import { useModal } from '../../hooks/useModal'

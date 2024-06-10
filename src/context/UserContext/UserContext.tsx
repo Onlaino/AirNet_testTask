@@ -37,6 +37,7 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
 				id: userId,
 				tasks: [],
 			})
+			
 			if (newUser && newUser.id) {
 				setUser({
 					name: newUser.name,

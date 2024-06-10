@@ -1,0 +1,25 @@
+
+.calendar__heading {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.calendar__heading-button {
+	width: 30px;
+	height: 30px;
+	border: none;
+	outline: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: none;
+	border-radius: 50%;
+	padding: 5px;
+	transition: all 0.35s ease;
+}
+
+.calendar__heading-button:hover {
+	cursor: pointer;
+	scale: 1.05;
+}

@@ -1,12 +1,14 @@
 import './TaskModal.css'
+import './MediaTaskModal.css';
 import { ITask } from '../../interfaces/tasks.interface'
 import { useUser } from '../../hooks/useUserContext'
 import { useModal } from '../../hooks/useModal'
 import { TaskService } from '../../services/taskService'
 import { v4 as uuidv4 } from 'uuid'
 import { TaskModalForm } from '../TaskModalForm/TaskModalForm'
-import { FormEventHandler, useEffect, useState } from 'react'
 import { TaskModalItem } from '../TaskModalItems/TaskModalItems'
+import { FormEventHandler, useEffect, useState } from 'react'
+import CloseIcon from '@mui/icons-material/Close'
 
 const taskService = new TaskService()
 
@@ -34,6 +36,7 @@ export const TasksModal = () => {
 
 	useEffect(() => {
 		filterTasks && setFilteredTasks(filterTasks)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tasks, selectedDay])
 
 	if (!isOpen) return null
@@ -93,6 +96,9 @@ export const TasksModal = () => {
 	return (
 		<section className='modal__wrapper'>
 			<div className='modal'>
+				<div className='modal__close' onClick={() => setIsOpen(false)}>
+					<CloseIcon />
+				</div>
 				<h2 className='modal__heading'>Задачи на день</h2>
 				<div className='modal__wrapper-content'>
 					<div className='modal__form-content-form'>
@@ -102,25 +108,22 @@ export const TasksModal = () => {
 							formTask={formTask}
 							setFormTask={setFormTask}
 						/>
-						<div className='modal__footer'>
-							<button onClick={() => setIsOpen(false)}>Закрыть</button>
+						<div className='modal__content'>
+							{filteredTasks && filteredTasks.length ? (
+								filteredTasks.map(ft => (
+									<TaskModalItem
+										key={ft.id}
+										task={ft}
+										changeCheckbox={() =>
+											handleCheckboxChange(ft.id, ft.completed)
+										}
+										deleteTask={() => handleDeleteTask(user.id, ft.id)}
+									/>
+								))
+							) : (
+								<h4>Not found tasks for this day</h4>
+							)}
 						</div>
-					</div>
-					<div className='modal__content'>
-						{filteredTasks && filteredTasks.length ? (
-							filteredTasks.map(ft => (
-								<TaskModalItem
-									key={ft.id}
-									task={ft}
-									changeCheckbox={() =>
-										handleCheckboxChange(ft.id, ft.completed)
-									}
-									deleteTask={() => handleDeleteTask(user.id, ft.id)}
-								/>
-							))
-						) : (
-							<h4>Not found tasks for this day</h4>
-						)}
 					</div>
 				</div>
 			</div>

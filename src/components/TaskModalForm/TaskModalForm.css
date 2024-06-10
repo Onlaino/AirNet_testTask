@@ -1,0 +1,52 @@
+.modal__form {
+	border: 1px solid orange;
+	border-radius: 20px;
+	background-color: #fff;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+.modal__form-title {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.modal__form-title label {
+	text-shadow: 1px 1px 2px rgb(255, 115, 0);
+}
+
+.modal__form-input {
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	padding: 5px 10px;
+	font-size: 15px;
+	border: 1px solid black;
+}
+
+.modal__form-textarea {
+	resize: none;
+	height: 70px;
+	border: none;
+	border-radius: 20px;
+	outline: none;
+	padding: 5px 10px;
+	font-size: 15px;
+	border: 1px solid black;
+}
+
+.modal__form-button {
+	cursor: pointer;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 20px;
+	background-color: rgb(255, 128, 0);
+	outline: none;
+	animation: buttonAnimate;
+	animation: buttonAnimate 2s infinite alternate;
+}

@@ -20,7 +20,7 @@ export const TaskModalItem = ({
 						: 'modal__content-item-title'
 				}
 			>
-				{task.title}
+				<p>{task.title}</p>
 				<div className='modal__content-item-icons'>
 					<input
 						type='checkbox'

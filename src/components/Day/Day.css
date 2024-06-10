@@ -3,6 +3,7 @@
 }
 
 .calendar__cells-cell-tasks-item {
+	overflow: hidden;
 	width: 100%;
 	border: 1px solid orange;
 	border-radius: 5px;

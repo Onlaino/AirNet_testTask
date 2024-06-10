@@ -1,0 +1,34 @@
+@media (max-width: 600px) {
+	.modal__wrapper {
+		padding: 20px;
+	}
+
+	.modal__form-content-form {
+		
+		height: auto;
+		display: flex; 
+		flex-direction: column;
+		align-items: center;
+  	gap: 10px; 
+	}
+
+	
+
+	.modal__wrapper-content {
+		display: flex; 
+		flex-direction: column;
+		align-items: center;
+  	justify-content: space-between;
+  	gap: 10px; 
+	}
+
+	.modal {
+		width: auto;
+		max-height: 400px;;
+		overflow-y: auto;
+	}
+
+	.modal__content {
+		width: 100%;
+	}
+}
