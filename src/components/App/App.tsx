@@ -1,8 +1,8 @@
-import { ModalContextProvider } from '../../context/ModalContext/ModalContext'
-import { UserContextProvider } from '../../context/UserContext/UserContext'
 import '../../styles/global.css'
-import { Calendar } from '../Calendar/Calendar'
 import { Login } from '../Login/Login'
+import { Calendar } from '../Calendar/Calendar'
+import { UserContextProvider } from '../../context/UserContext/UserContext'
+import { ModalContextProvider } from '../../context/ModalContext/ModalContext'
 
 export const App = () => {
 	return (

@@ -1,4 +1,4 @@
-import './CalendarCells.css';
+import './CalendarCells.css'
 import { Day } from '../Day/Day'
 import { useUser } from '../../hooks/useUserContext'
 import { useModal } from '../../hooks/useModal'
@@ -11,6 +11,16 @@ export const CalendarCells = ({ date }: { date: Date }) => {
 	const [calendar, setCalendar] = useState<TypeCalendarDay[]>([])
 	const { setTasks, setIsOpen, setSelectedDay, tasks } = useModal()
 
+	const convertDate = (date: Date) => {
+		return date.toLocaleString().split(',')[0].split('/')[1];
+	}
+
+const calculateClassName = (item: TypeCalendarDay) => {
+	const activeClass = item.active ? 'active' : ''
+	const inactiveClass = item.inactive ? 'inactive' : ''
+	return `calendar__cells-cell ${activeClass} ${inactiveClass}`
+}
+
 	const handleDayClick = async (calendarDay: TypeCalendarDay) => {
 		setSelectedDay(calendarDay.day)
 		setIsOpen(true)
@@ -19,6 +29,7 @@ export const CalendarCells = ({ date }: { date: Date }) => {
 	useEffect(() => {
 		const calendarDays = generateCalendar(date, user.tasks)
 		setCalendar(calendarDays)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [date, tasks, setTasks])
 
 	return (
@@ -27,12 +38,10 @@ export const CalendarCells = ({ date }: { date: Date }) => {
 				<li
 					onClick={() => handleDayClick(item)}
 					key={index}
-					className={`calendar__cells-cell ${item.inactive ? 'inactive' : ''} ${
-						item.active ? 'active' : ''
-					}`}
+					className={calculateClassName(item)}
 				>
 					<span className='calendar__cells-cell-day'>
-						{item.day.toLocaleString().split(',')[0].split('/')[1]}
+						{convertDate(item.day)}
 					</span>
 					<div className='calendar__cells-cell-tasks'>
 						<Day tasks={tasks} date={item.day} />

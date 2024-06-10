@@ -1,8 +1,11 @@
-import './TaskModalForm.css';
+import './TaskModalForm.css'
 import { ITaskModalFormProps } from './TaskModalForm.props'
 
-
-export const TaskModalForm = ({addTask, formTask, setFormTask}: ITaskModalFormProps) => {
+export const TaskModalForm = ({
+	addTask,
+	formTask,
+	setFormTask,
+}: ITaskModalFormProps) => {
 	return (
 		<form className='modal__form' onSubmit={addTask}>
 			<div className='modal__form-title'>

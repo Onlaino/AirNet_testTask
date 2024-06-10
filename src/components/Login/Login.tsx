@@ -7,35 +7,41 @@ import { useState } from 'react'
 import { LoginModal } from '../LoginModal/LoginModal'
 
 export const Login = () => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const { user, logout } = useUser()
+	const [isOpen, setIsOpen] = useState<boolean>(false)
+
+	const loginButtonBlock = (
+		<div className='login__wrapper'>
+			<h1 className='login-header' onClick={() => setIsOpen(true)}>
+				Вход
+			</h1>
+			<LoginIcon className='login-icon' />
+		</div>
+	)
+
+	const userInfoBlock = (
+		<h2 className='login__user'>
+			<div className='login__user-name'>
+				{user.name}
+				<Face6Icon />
+				{user.name && (
+					<div className='login__logout' onClick={logout}>
+						<LogoutIcon className='login__logout-icon' />
+					</div>
+				)}
+			</div>
+		</h2>
+	)
+
+	const renderLoginBlock = () => {
+		if (user.name) return userInfoBlock
+		return loginButtonBlock
+	}
 
 	return (
 		<div className='login'>
-			{!user.name && (
-				<div className='login__wrapper'>
-					<h1 className='login-header' onClick={() => setIsOpen(true)}>
-						Вход
-					</h1>
-					<LoginIcon className='login-icon' />
-				</div>
-			)}
-
 			{isOpen && <LoginModal setIsOpen={setIsOpen} />}
-
-			<h2 className='login__user'>
-				{user.name && (
-					<div className='login__user-name'>
-						{user.name}
-						<Face6Icon />
-						{user.name && (
-							<div className='login__logout' onClick={logout}>
-								<LogoutIcon className='login__logout-icon' />
-							</div>
-						)}
-					</div>
-				)}
-			</h2>
+			{renderLoginBlock()}
 		</div>
 	)
 }

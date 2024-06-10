@@ -1,3 +1,7 @@
+.completed {
+	text-decoration: line-through;
+}
+
 .calendar__cells-cell-tasks {
 	width: 100%;
 }

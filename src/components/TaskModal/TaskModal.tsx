@@ -1,5 +1,5 @@
 import './TaskModal.css'
-import './MediaTaskModal.css';
+import './MediaTaskModal.css'
 import { ITask } from '../../interfaces/tasks.interface'
 import { useUser } from '../../hooks/useUserContext'
 import { useModal } from '../../hooks/useModal'
@@ -36,7 +36,7 @@ export const TasksModal = () => {
 
 	useEffect(() => {
 		filterTasks && setFilteredTasks(filterTasks)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tasks, selectedDay])
 
 	if (!isOpen) return null
@@ -88,9 +88,29 @@ export const TasksModal = () => {
 					task.id === id ? { ...task, completed: !completed } : task
 				)
 			)
-		} catch(e) {
-			console.error('Не удалось поменять статус задачи', e);
+			setTasks(
+				tasks.map(task =>
+					task.id === id ? { ...task, completed: !completed } : task
+				)
+			)
+		} catch (e) {
+			console.error('Не удалось поменять статус задачи', e)
 		}
+	}
+
+	const renderFilteredTask = (tasks: ITask[]) => {
+		if (tasks && tasks.length) {
+			return tasks.map(ft => (
+				<TaskModalItem
+					key={ft.id}
+					task={ft}
+					changeCheckbox={() => handleCheckboxChange(ft.id, ft.completed)}
+					deleteTask={() => handleDeleteTask(user.id, ft.id)}
+				/>
+			))
+		}
+
+		return <h4>Not found tasks for this day</h4>
 	}
 
 	return (
@@ -109,20 +129,7 @@ export const TasksModal = () => {
 							setFormTask={setFormTask}
 						/>
 						<div className='modal__content'>
-							{filteredTasks && filteredTasks.length ? (
-								filteredTasks.map(ft => (
-									<TaskModalItem
-										key={ft.id}
-										task={ft}
-										changeCheckbox={() =>
-											handleCheckboxChange(ft.id, ft.completed)
-										}
-										deleteTask={() => handleDeleteTask(user.id, ft.id)}
-									/>
-								))
-							) : (
-								<h4>Not found tasks for this day</h4>
-							)}
+							{renderFilteredTask(filteredTasks)}
 						</div>
 					</div>
 				</div>

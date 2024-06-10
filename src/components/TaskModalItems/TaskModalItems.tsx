@@ -11,15 +11,15 @@ export const TaskModalItem = ({
 	changeCheckbox: (id: string, completed: boolean) => void
 	deleteTask: () => void
 }) => {
+	const calculateTitleClassName = (task: ITask) => {
+		const completedClass = 'modal__content-item-title completed'
+		const unCompletedClass = 'modal__content-item-title'
+		return task.completed ? completedClass : unCompletedClass
+	}
+
 	return (
 		<div className='modal__content-item' key={task.id}>
-			<div
-				className={
-					task.completed
-						? 'modal__content-item-title completed'
-						: 'modal__content-item-title'
-				}
-			>
+			<div className={calculateTitleClassName(task)}>
 				<p>{task.title}</p>
 				<div className='modal__content-item-icons'>
 					<input

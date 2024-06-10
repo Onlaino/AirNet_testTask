@@ -16,8 +16,6 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
 	const { setTasks } = useModal()
 	const [user, setUser] = useState<UserType>({ name: '', id: '', tasks: [] })
 
-	
-
 	const login = async (name: string, userId: string) => {
 		try {
 			const users: IUser[] = await userService.getAllUsers()
